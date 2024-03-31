@@ -120,6 +120,7 @@ const getDesignTokens = (mode) => ({
     text: {
       primary: gray[800],
       secondary: gray[600],
+      new: '#fff',
       ...(mode === 'dark' && { primary: '#fff', secondary: gray[400] }),
     },
     action: {
