@@ -68,13 +68,15 @@ const userTestimonials2 = [
       image:'./deezed.jpeg',
       occupation: 'Senior Engineer',
       testimonial:
-        "I absolutely love how versatile this product is! Whether I'm tackling work projects or indulging in my favorite hobbies, it seamlessly adapts to my changing needs. Its intuitive design has truly enhanced my daily routine, making tasks more efficient and enjoyable.",
+        "I absolutely love how versatile this product is! Whether I'm tackling ",
+      price:"100$",
     },
     {
       avatar: <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />,
       name: 'Travis Howard',
       image:'',
       occupation: 'Lead Product Designer',
+      price:"100$",
       testimonial:
         "One of the standout features of this product is the exceptional customer support. In my experience, the team behind this product has been quick to respond and incredibly helpful. It's reassuring to know that they stand firmly behind their product.",
     },
@@ -83,6 +85,7 @@ const userTestimonials2 = [
       name: 'Cindy Baker',
       image:'',
       occupation: 'CTO',
+      price:"100$",
       testimonial:
         'The level of simplicity and user-friendliness in this product has significantly simplified my life. I appreciate the creators for delivering a solution that not only meets but exceeds user expectations.',
     }
@@ -122,6 +125,7 @@ export default function Products() {
       sx={{
         pt: { xs: 4, sm: 12 },
         pb: { xs: 8, sm: 16 },
+        ml: { xs: 8, sm: 20 },
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
@@ -154,18 +158,21 @@ export default function Products() {
                 justifyContent: 'space-between',
                 flexGrow: 1,
                 p: 1,
+                minWidth: '7em',
               }}
             >
               <CardContent>
-                <CardMedia component="picture" height="140">
-                    <source srcset="https://mui.com/static/images/cards/contemplative-reptile.jpg, https://mui.com/static/images/cards/contemplative-reptile.jpg 1.5x" />
+              <CardMedia component="picture" sx={{ padding: "1em 1em 0 1em", objectFit: "contain" }}>
                     <img
-                        src="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                        alt="logo"
-                    />
+                    src="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                    alt="logo"
+                    height={"100%"}
+                    width={"100%"}
+                />
                 </CardMedia>
                 <Typography variant="body2" color="text.secondary">
                     <h1>Test Name</h1>
+                    <p>{testimonial.price}</p>
                   {testimonial.testimonial}
                 </Typography>
               </CardContent>
@@ -220,52 +227,46 @@ export default function Products() {
           and reliable support.
         </Typography>
       </Box>
-      <Grid container spacing={2} display={'flex'} flexDirection={'column'} justifyContent={'space-evenly'}>
+      <Grid container direction="column" justifyContent="center" alignItems="center" >
         {userTestimonials2.map((testimonial, index) => (
-          <Grid sm={6} key={index} sx={{ display: 'flex', flexDirection:'column' }}>
-            <Card
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                flexGrow: 1,
-                p: 1,
-              }}
-            >
-              <CardContent>
-                <CardMedia component="picture" height="140">
-                    <source srcset="https://mui.com/static/images/cards/contemplative-reptile.jpg, https://mui.com/static/images/cards/contemplative-reptile.jpg 1.5x" />
-                    <img
-                        src="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                        alt="logo"
-                    />
-                </CardMedia>
-                <Typography variant="body2" color="text.secondary">
-                    <h1>Test Name</h1>
-                  {testimonial.testimonial}
-                </Typography>
-              </CardContent>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  pr: 2,
-                }}
-              >
-                <CardHeader
-                  avatar={testimonial.avatar}
-                  title={testimonial.name}
-                  subheader={testimonial.occupation}
-                />
+          <Card
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            flexGrow: 1,
+            p: 1,
+            width:'50%',
+            margin:'1em',
+          }}
+        >
+          <CardContent>
+            <div style={{ display:'flex', justifyContent:'center' }}>
+            <CardMedia component="picture" sx={{ padding: "1em 1em 0 1em", objectFit: "contain" }}>
                 <img
-                  src={logos[index]}
-                  alt={`Logo ${index + 1}`}
-                  style={logoStyle}
+                    src="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                    alt="logo"
+                    height={"100%"}
+                    width={"100%"}
                 />
-              </Box>
-            </Card>
-          </Grid>
+            </CardMedia>
+            </div>
+            <Typography variant="body2" color="text.secondary">
+                <h1>Test Name</h1>
+                <p>{testimonial.price}</p>
+              {testimonial.testimonial}
+            </Typography>
+          </CardContent>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              pr: 2,
+            }}
+          >
+          </Box>
+        </Card>
         ))}
       </Grid>
     </Container>

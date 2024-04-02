@@ -9,6 +9,8 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { useTheme } from '@mui/system';
+import Carousel from 'react-grid-carousel'
+
 
 const userTestimonials = [
   {
@@ -59,34 +61,55 @@ const userTestimonials = [
     testimonial:
       "The quality of this product exceeded my expectations. It's durable, well-designed, and built to last. Definitely worth the investment!",
   },
+  {
+    avatar: <Avatar alt="Remy Sharp" src="/static/images/avatar/4.jpg" />,
+    name: 'Julia Stewart',
+    image:'',
+    occupation: 'Senior Engineer',
+    testimonial:
+      "I appreciate the attention to detail in the design of this product. The small touches make a big difference, and it's evident that the creators focused on delivering a premium experience.",
+  },
+  {
+    avatar: <Avatar alt="Travis Howard" src="/static/images/avatar/5.jpg" />,
+    name: 'John Smith',
+    image:'',
+    occupation: 'Product Designer',
+    testimonial:
+      "I've tried other similar products, but this one stands out for its innovative features. It's clear that the makers put a lot of thought into creating a solution that truly addresses user needs.",
+  },
+  {
+    avatar: <Avatar alt="Cindy Baker" src="/static/images/avatar/6.jpg" />,
+    name: 'Daniel Wolf',
+    image:'',
+    occupation: 'CDO',
+    testimonial:
+      "The quality of this product exceeded my expectations. It's durable, well-designed, and built to last. Definitely worth the investment!",
+  },  {
+    avatar: <Avatar alt="Remy Sharp" src="/static/images/avatar/4.jpg" />,
+    name: 'Julia Stewart',
+    image:'',
+    occupation: 'Senior Engineer',
+    testimonial:
+      "I appreciate the attention to detail in the design of this product. The small touches make a big difference, and it's evident that the creators focused on delivering a premium experience.",
+  },
+  {
+    avatar: <Avatar alt="Travis Howard" src="/static/images/avatar/5.jpg" />,
+    name: 'John Smith',
+    image:'',
+    occupation: 'Product Designer',
+    testimonial:
+      "I've tried other similar products, but this one stands out for its innovative features. It's clear that the makers put a lot of thought into creating a solution that truly addresses user needs.",
+  },
+  {
+    avatar: <Avatar alt="Cindy Baker" src="/static/images/avatar/6.jpg" />,
+    name: 'Daniel Wolf',
+    image:'',
+    occupation: 'CDO',
+    testimonial:
+      "The quality of this product exceeded my expectations. It's durable, well-designed, and built to last. Definitely worth the investment!",
+  },
 ];
 
-const userTestimonials2 = [
-    {
-      avatar: <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />,
-      name: 'Remy Sharp',
-      image:'./deezed.jpeg',
-      occupation: 'Senior Engineer',
-      testimonial:
-        "I absolutely love how versatile this product is! Whether I'm tackling work projects or indulging in my favorite hobbies, it seamlessly adapts to my changing needs. Its intuitive design has truly enhanced my daily routine, making tasks more efficient and enjoyable.",
-    },
-    {
-      avatar: <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />,
-      name: 'Travis Howard',
-      image:'',
-      occupation: 'Lead Product Designer',
-      testimonial:
-        "One of the standout features of this product is the exceptional customer support. In my experience, the team behind this product has been quick to respond and incredibly helpful. It's reassuring to know that they stand firmly behind their product.",
-    },
-    {
-      avatar: <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />,
-      name: 'Cindy Baker',
-      image:'',
-      occupation: 'CTO',
-      testimonial:
-        'The level of simplicity and user-friendliness in this product has significantly simplified my life. I appreciate the creators for delivering a solution that not only meets but exceeds user expectations.',
-    }
-  ];
 
 const whiteLogos = [
   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/6560628e8573c43893fe0ace_Sydney-white.svg',
@@ -116,7 +139,6 @@ export default function ProductPage() {
   const logos = theme.palette.mode === 'light' ? darkLogos : whiteLogos;
 
   return (
-    <div style={{'display':'flex','flex-direction':'row'}}>
     <Container
       id="testimonials"
       sx={{
@@ -127,11 +149,13 @@ export default function ProductPage() {
         flexDirection: 'column',
         alignItems: 'center',
         gap: { xs: 3, sm: 6 },
+        minWidth:400,
+        height:"100%",
       }}
     >
       <Box
         sx={{
-          width: { sm: '100%', md: '60%' },
+          width: { sm: '150%', md: '60%' },
           textAlign: { sm: 'left', md: 'center' },
         }}
       >
@@ -144,131 +168,37 @@ export default function ProductPage() {
           and reliable support.
         </Typography>
       </Box>
-      <Grid container spacing={2}>
-        {userTestimonials.map((testimonial, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index} sx={{ display: 'flex' }}>
+      <Carousel cols={3} rows={2} gap={10} loop containerStyle={{ width:"100%" }} showDots>
+      {userTestimonials.map((testimonial, index) => ( 
+        <Carousel.Item>
             <Card
-              sx={{
+            sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 flexGrow: 1,
                 p: 1,
-              }}
+                width: "20em",
+                height: "35em",
+            }}
             >
-              <CardContent>
-                <CardMedia component="picture" height="140">
-                    <source srcset="https://mui.com/static/images/cards/contemplative-reptile.jpg, https://mui.com/static/images/cards/contemplative-reptile.jpg 1.5x" />
-                    <img
-                        src="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                        alt="logo"
-                    />
-                </CardMedia>
-                <Typography variant="body2" color="text.secondary">
-                    <h1>Test Name</h1>
-                  {testimonial.testimonial}
-                </Typography>
-              </CardContent>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  pr: 2,
-                }}
-              >
-                <CardHeader
-                  avatar={testimonial.avatar}
-                  title={testimonial.name}
-                  subheader={testimonial.occupation}
-                />
-                <img
-                  src={logos[index]}
-                  alt={`Logo ${index + 1}`}
-                  style={logoStyle}
-                />
-              </Box>
+                <CardContent>
+                    <CardMedia component="picture" height="20">
+                        <source srcset="https://mui.com/static/images/cards/contemplative-reptile.jpg, https://mui.com/static/images/cards/contemplative-reptile.jpg 1.5x" />
+                        <img
+                            src="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                            alt="logo"
+                        />
+                    </CardMedia>
+                    <Typography variant="body2" color="text.secondary">
+                        <h1>Test Name</h1>
+                        {testimonial.testimonial}
+                    </Typography>
+                </CardContent>
             </Card>
-          </Grid>
+        </Carousel.Item>
         ))}
-      </Grid>
+    </Carousel>
     </Container>
-    <Container
-      id="testimonials2"
-      sx={{
-        pt: { xs: 4, sm: 12 },
-        pb: { xs: 8, sm: 16 },
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: { xs: 3, sm: 6 },
-      }}
-    >
-      <Box
-        sx={{
-          width: { sm: '100%', md: '60%' },
-          textAlign: { sm: 'left', md: 'center' },
-        }}
-      >
-        <Typography component="h2" variant="h4" color="text.primary">
-          Products
-        </Typography>
-        <Typography variant="body1" color="text.secondary">
-          See what our customers love about our products. Discover how we excel in
-          efficiency, durability, and satisfaction. Join us for quality, innovation,
-          and reliable support.
-        </Typography>
-      </Box>
-      <Grid container spacing={2} display={'flex'} flexDirection={'column'} justifyContent={'space-evenly'}>
-        {userTestimonials2.map((testimonial, index) => (
-          <Grid sm={6} key={index} sx={{ display: 'flex', flexDirection:'column' }}>
-            <Card
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                flexGrow: 1,
-                p: 1,
-              }}
-            >
-              <CardContent>
-                <CardMedia component="picture" height="140">
-                    <source srcset="https://mui.com/static/images/cards/contemplative-reptile.jpg, https://mui.com/static/images/cards/contemplative-reptile.jpg 1.5x" />
-                    <img
-                        src="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                        alt="logo"
-                    />
-                </CardMedia>
-                <Typography variant="body2" color="text.secondary">
-                    <h1>Test Name</h1>
-                  {testimonial.testimonial}
-                </Typography>
-              </CardContent>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  pr: 2,
-                }}
-              >
-                <CardHeader
-                  avatar={testimonial.avatar}
-                  title={testimonial.name}
-                  subheader={testimonial.occupation}
-                />
-                <img
-                  src={logos[index]}
-                  alt={`Logo ${index + 1}`}
-                  style={logoStyle}
-                />
-              </Box>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
-    </div>
   );
 }
