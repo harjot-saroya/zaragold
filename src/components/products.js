@@ -135,7 +135,7 @@ export default function Products() {
     >
       <Box
         sx={{
-          width: { sm: '100%', md: '60%' },
+          width: { sm: '60%', md: '60%' },
           textAlign: { sm: 'left', md: 'center' },
         }}
       >
@@ -209,25 +209,23 @@ export default function Products() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: { xs: 3, sm: 6 },
       }}
     >
       <Box
         sx={{
-          width: { sm: '100%', md: '60%' },
+          width: { sm: '50%', md: '60%' },
           textAlign: { sm: 'left', md: 'center' },
         }}
       >
         <Typography component="h2" variant="h4" color="text.primary">
-          Products
+          Featured Products
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          See what our customers love about our products. Discover how we excel in
-          efficiency, durability, and satisfaction. Join us for quality, innovation,
-          and reliable support.
         </Typography>
       </Box>
-      <Grid container direction="column" justifyContent="center" alignItems="center" >
+      <Grid container direction="column" justifyContent="center" alignItems="center" sx={{
+        width: "30em"
+      }} >
         {userTestimonials2.map((testimonial, index) => (
           <Card
           sx={{

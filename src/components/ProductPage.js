@@ -7,7 +7,7 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
+import { useNavigate} from "react-router-dom";
 import { useTheme } from '@mui/system';
 import Carousel from 'react-grid-carousel'
 
@@ -137,6 +137,10 @@ const logoStyle = {
 export default function ProductPage() {
   const theme = useTheme();
   const logos = theme.palette.mode === 'light' ? darkLogos : whiteLogos;
+  let navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/selectedProduct');
+  };
 
   return (
     <Container
@@ -194,6 +198,7 @@ export default function ProductPage() {
                         <h1>Test Name</h1>
                         {testimonial.testimonial}
                     </Typography>
+                    <button onClick={handleClick}>Info</button>
                 </CardContent>
             </Card>
         </Carousel.Item>

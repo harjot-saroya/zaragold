@@ -98,11 +98,6 @@ export default function SelectedProduct() {
                 pr: 2,
             }}
             >
-            {/* <img
-                src={logos[index]}
-                alt={`Logo ${index + 1}`}
-                style={logoStyle}
-            /> */}
             </Box>
         </Card>
     </Container>
