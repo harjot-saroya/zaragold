@@ -78,14 +78,10 @@ export default function LandingPage() {
     <ThemeProvider theme={LPtheme}>
       <CssBaseline />
       <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
-      <Box sx={{ bgcolor: '#e8c68b' }}>
+      <Box sx={{ bgcolor: '#fbfeff' }}>
         <Features />
-        <Divider />
         <Products />
         <Testimonials />
-        <Divider />
-        <Highlights />
-        <Divider />
         <Divider />
         <FAQ />
         <Divider />
