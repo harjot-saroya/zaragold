@@ -39,7 +39,6 @@ export default function Products() {
           width: { sm: '100%', md: '100%' },
           textAlign: { sm: 'left', md: 'center' },
           marginBottom:'1em'
-
         }}
       >
         <Typography component="h2" variant="h4" color="text.primary" fontSize={'2em'}>
@@ -54,20 +53,22 @@ export default function Products() {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
-                backgroundColor:'#e7c68b',
-                border:'none',
+                backgroundColor:'white',
+                borderStyle:'solid',
                 width: "25em",
                 height: "21em",
               }}
             >
               <CardContent>
               <CardMedia component="picture" sx={{ padding: "1em 1em 0 1em", objectFit: "contain" }}>
+                  <Box sx={{borderStyle:'solid',borderColor:'#e5ebf5', backgroundColor:'white',height:'11em',width:'11em', marginLeft:'auto', marginRight:'auto'}}>
                     <img
-                    src={product.src}
-                    alt="logo"
-                    height={"150em"}
-                    width={"130em"}
-                />
+                      src={product.src}
+                      alt="logo"
+                      height={"100%"}
+                      width={"100%"}
+                  />
+                  </Box>
                 </CardMedia>
                 <Typography variant="body2" color="text.secondary">
                 <Typography component="h2" variant="h4" color="text.primary" fontSize={'25px'}>

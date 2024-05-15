@@ -1,12 +1,13 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import { CardMedia, CssBaseline } from '@mui/material';
+import { CardMedia, CssBaseline, FormGroup } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { useNavigate} from "react-router-dom";
-import { useTheme } from '@mui/system';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import Carousel from 'react-grid-carousel'
 import { productJson } from '../photos/photos';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -21,17 +22,12 @@ productJson.sourCream, productJson.tangoTomato,productJson.turmericLatte]
 export default function ProductPage() {
   const [mode, setMode] = React.useState('light');
   const [showCA, setCountry] = React.useState(true);
-  const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const LPtheme = createTheme(getLPTheme(mode));
-  const defaultTheme = createTheme({ palette: { mode } });
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
 
-  const toggleCustomTheme = () => {
-    setShowCustomTheme((prev) => !prev);
-  };
   let navigate = useNavigate();
 
   const handleClick = (productId) => {
@@ -47,7 +43,7 @@ export default function ProductPage() {
 
       <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
       <Divider />
-    {showCA === true ? <div><Container
+    <Container
       id="testimonials"
       sx={{
         position: 'relative',
@@ -56,10 +52,13 @@ export default function ProductPage() {
         alignItems: 'center',
         gap: { xs: 3, sm: 6 },
         minWidth:"100%",
+        marginLeft:'auto',
+        marginRight:'auto',
         height:"100%",
         backgroundColor:'#fbfeff',
         marginTop:'7em',
-        marginBottom:'10em'
+        marginBottom:'10em',
+        overflowX:'hidden',
       }}
     >
       <Box
@@ -71,18 +70,15 @@ export default function ProductPage() {
         <Typography component="h2" variant="h4" color="text.primary">
           Products
         </Typography>
-        <Typography variant="body1" color="text.secondary">
-          See what our customers love about our products. Discover how we excel in
-          efficiency, durability, and satisfaction. Join us for quality, innovation,
-          and reliable support.
-        </Typography>
+        <ButtonGroup>
+          <Button variant='text' sx={{color:(showCA) ? 'white': 'black', backgroundColor:(showCA) ? '#522f29': 'lightgreen'}} onClick={() => {setCountry(true)}}>Show Canadian Products</Button>
+          <Button variant='text' sx={{color:(!showCA) ? 'white': 'black', backgroundColor:(!showCA) ? '#522f29': 'lightgreen'}} onClick={() => {setCountry(false)}}>Show Indian Products</Button>
+        </ButtonGroup>
       </Box>
-      <Carousel hideArrow cols={3} rows={2} gap={10} loop containerStyle={{ width:"80%",marginLeft:'auto',marginRight:'auto' }} showDots>
+      {showCA === true ? <div containerStyle={{width:'100%'}}>
+      <Carousel hideArrow cols={3} rows={2} gap={10} loop containerStyle={{ width:"35%",marginLeft:'auto',marginRight:'auto' }} showDots>
       {productList.map((product) => ( 
-        <Carousel.Item sx={{
-          width: "15em",
-          height: "21em",
-      }}>
+        <Carousel.Item>
             <Card
             sx={{
                 display: 'flex',
@@ -94,12 +90,14 @@ export default function ProductPage() {
             >
                 <CardContent>
                     <CardMedia component="picture" height="20" sx={{paddingTop:'1em'}}>
-                    <img
-                    src={product.src}
-                    alt="logo"
-                    height={"150em"}
-                    width={"130em"}
-                />
+                    <Box sx={{borderStyle:'solid',borderColor:'#e5ebf5', backgroundColor:'white',height:'11em',width:'11em', marginLeft:'auto', marginRight:'auto'}}>
+                          <img
+                          src={product.src}
+                          alt="logo"
+                          height={"150em"}
+                          width={"130em"}
+                      />
+                    </Box>
                     </CardMedia>
                     <Typography variant="body2" color="text.secondary" sx={{paddingTop:'1em'}}>
                         <h1>{product.name}</h1>
@@ -111,7 +109,8 @@ export default function ProductPage() {
         </Carousel.Item>
         ))}
     </Carousel>
-    </Container></div>:<div></div>}
+    </div>:<div></div>}
+    </Container>
     
     </ThemeProvider>
 
