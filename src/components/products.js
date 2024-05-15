@@ -20,7 +20,7 @@ export default function Products() {
   const theme = useTheme();
 
   return (
-    <div style={{'display':'flex','flex-direction':'row', maxWidth:'100%', marginLeft:'auto',marginRight:'auto'}}>
+    <div style={{'display':'flex','flex-direction':'row', 'maxWidth':'100%', 'marginLeft':'auto','marginRight':'auto'}}>
     <Container
       id="testimonials"
       sx={{
@@ -46,7 +46,7 @@ export default function Products() {
           Featured Products
         </Typography>
       </Box>
-      <Grid container spacing={4} width={"100%"} marginLeft={'auto'} marginRight={'auto'}>
+      <Grid container spacing={4} width={"90%"} marginLeft={'auto'} marginRight={'auto'}>
         {productList.map((product, index) => (
           <Grid item xs={2} md={4} key={index} sx={{ display: 'flex', width:'100%', display:'flex', justifyContent:'center'}}>
             <Card
