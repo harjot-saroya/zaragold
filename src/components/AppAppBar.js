@@ -12,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import ToggleColorMode from './ToggleColorMode';
+import { useNavigate} from "react-router-dom";
 
 const logoStyle = {
   width: '140px',
@@ -21,6 +22,11 @@ const logoStyle = {
 
 function AppAppBar({ mode, toggleColorMode }) {
   const [open, setOpen] = React.useState(false);
+  let navigate = useNavigate();
+  const url = window.location.href;
+  const params = url.split("/"); 
+  const urlColor = params[3];
+  console.log('yerrr',urlColor)
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -38,6 +44,7 @@ function AppAppBar({ mode, toggleColorMode }) {
       });
       setOpen(false);
     }
+
   };
 
   return (
@@ -90,45 +97,45 @@ function AppAppBar({ mode, toggleColorMode }) {
                 style={logoStyle}
                 alt="PUT LOGO HERE"
               />
-              <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <Box sx={{ display: { xs: 'none', md: 'flex' }, gap:'30px', marginLeft:'2em' }}>
                 <MenuItem
-                  onClick={() => scrollToSection('features')}
-                  sx={{ py: '6px', px: '12px' }}
+                  onClick={() => {navigate({pathname:'/'});}}
+                  sx={{ py: '6px', px: '32px' }}
                 >
-                  <Typography variant="body2" color="text.new">
-                    Spices and Herbs
+                  <Typography variant="body2" fontSize={'16px'} color={(urlColor === '' ? 'black':'white')} backgroundColor={(urlColor === '' ? 'orange':'')} border={'none'} borderRadius={'10px'} width={'80px'}>
+                    Home
                   </Typography>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => scrollToSection('testimonials')}
-                  sx={{ py: '6px', px: '12px' }}
+                  onClick={() => {navigate({pathname:'/products/'});}}
+                  sx={{ py: '6px', px: '32px' }}
                 >
-                  <Typography variant="body2" color="text.new">
-                    Seasonings
+                  <Typography variant="body2" color={(urlColor === 'products' ? 'black':'white')} fontSize={'16px'} backgroundColor={(urlColor === 'products' ? 'orange':'')} border={'none'} borderRadius={'10px'} width={'80px'}>
+                    Products
                   </Typography>
                 </MenuItem>
                 <MenuItem
                   onClick={() => scrollToSection('highlights')}
-                  sx={{ py: '6px', px: '12px' }}
+                  sx={{ py: '6px', px: '32px' }}
                 >
-                  <Typography variant="body2" color="text.new">
-                    Chilli Powder
+                  <Typography variant="body2" color={(urlColor === 'recipes' ? 'black':'white')} fontSize={'16px'}>
+                    Recipes
                   </Typography>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => scrollToSection('pricing')}
-                  sx={{ py: '6px', px: '12px' }}
+                  onClick={() => scrollToSection('footer')}
+                  sx={{ py: '6px', px: '32px' }}
                 >
-                  <Typography variant="body2" color="text.new">
-                    Curry Powder
+                  <Typography variant="body2" color="text.new" fontSize={'16px'}>
+                    About us
                   </Typography>
                 </MenuItem>
                 <MenuItem
                   onClick={() => scrollToSection('faq')}
-                  sx={{ py: '6px', px: '12px' }}
+                  sx={{ py: '6px', px: '32px' }}
                 >
-                  <Typography variant="body2" color="text.new">
-                    Herb Blends
+                  <Typography variant="body2" color="text.new" fontSize={'16px'}>
+                    FAQ
                   </Typography>
                 </MenuItem>
               </Box>

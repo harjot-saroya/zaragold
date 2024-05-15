@@ -21,7 +21,7 @@ const slideImages = [productJson.chai,productJson.chickenLollipop,productJson.be
 export default function Features() {
 console.log(slideImages)
   return (
-    <Container id="features" sx={{ pt: { xs: 8, sm: 16 } }}>
+    <Container id="slideShow" sx={{ pt: { xs: 8, sm: 16 } }}>
       <div className="slide-container">
         <Slide slidesToShow={2}>
          {slideImages.map((slideImage, index)=> (

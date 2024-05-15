@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import { CardMedia } from '@mui/material';
+import { CardMedia, CssBaseline } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -11,6 +11,8 @@ import Carousel from 'react-grid-carousel'
 import { productJson } from '../photos/photos';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import getLPTheme from '../getLPTheme';
+import AppAppBar from './AppAppBar';
+import Divider from '@mui/material/Divider';
 
 const productList = [productJson.batterMixClassic,productJson.batterMixHerb,productJson.batterMixHot,productJson.batterMixThai, productJson.beetRoot,
 productJson.chai,productJson.chai,productJson.chai,productJson.chickenLollipop,productJson.crunchyMasala,productJson.hotChocolate,productJson.regularSalted,
@@ -18,7 +20,18 @@ productJson.sourCream, productJson.tangoTomato,productJson.turmericLatte]
 
 export default function ProductPage() {
   const [mode, setMode] = React.useState('light');
+  const [showCA, setCountry] = React.useState(true);
+  const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const LPtheme = createTheme(getLPTheme(mode));
+  const defaultTheme = createTheme({ palette: { mode } });
+
+  const toggleColorMode = () => {
+    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
+  const toggleCustomTheme = () => {
+    setShowCustomTheme((prev) => !prev);
+  };
   let navigate = useNavigate();
 
   const handleClick = (productId) => {
@@ -30,7 +43,11 @@ export default function ProductPage() {
 
   return (
     <ThemeProvider theme={LPtheme}>
-    <Container
+      <CssBaseline />
+
+      <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
+      <Divider />
+    {showCA === true ? <div><Container
       id="testimonials"
       sx={{
         position: 'relative',
@@ -41,6 +58,8 @@ export default function ProductPage() {
         minWidth:"100%",
         height:"100%",
         backgroundColor:'#fbfeff',
+        marginTop:'7em',
+        marginBottom:'10em'
       }}
     >
       <Box
@@ -92,7 +111,8 @@ export default function ProductPage() {
         </Carousel.Item>
         ))}
     </Carousel>
-    </Container>
+    </Container></div>:<div></div>}
+    
     </ThemeProvider>
 
   );
