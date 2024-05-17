@@ -45,7 +45,7 @@ export default function Products() {
           Featured Products
         </Typography>
       </Box>
-      <Grid container spacing={4} width={"90%"} marginLeft={'auto'} marginRight={'auto'}>
+      <Grid container spacing={4} width={"1000px"} marginLeft={'auto'} marginRight={'auto'}>
         {productList.map((product, index) => (
           <Grid item xs={2} md={4} key={index} sx={{ display: 'flex', width:'100%', display:'flex', justifyContent:'center'}}>
             <Card
