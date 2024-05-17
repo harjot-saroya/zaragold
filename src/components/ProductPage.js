@@ -13,6 +13,11 @@ import { productJson } from '../photos/photos';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import getLPTheme from '../getLPTheme';
 import AppAppBar from './AppAppBar';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import Divider from '@mui/material/Divider';
 
 const productList = [productJson.batterMixClassic,productJson.batterMixHerb,productJson.batterMixHot,productJson.batterMixThai, productJson.beetRoot,
@@ -23,6 +28,11 @@ export default function ProductPage() {
   const [mode, setMode] = React.useState('light');
   const [showCA, setCountry] = React.useState(true);
   const LPtheme = createTheme(getLPTheme(mode));
+  const [filter, setFilter] = React.useState('all');
+
+  const handleChange = (event) => {
+    setFilter(event.target.value);
+  };
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
@@ -36,7 +46,7 @@ export default function ProductPage() {
       search:productId
     });
   };
-
+  console.log('filter ', filter)
   return (
     <ThemeProvider theme={LPtheme}>
       <CssBaseline />
@@ -75,40 +85,62 @@ export default function ProductPage() {
           <Button variant='text' sx={{color:(!showCA) ? 'white': 'black', backgroundColor:(!showCA) ? '#522f29': 'lightgreen'}} onClick={() => {setCountry(false)}}>Show Indian Products</Button>
         </ButtonGroup>
       </Box>
+      <Box sx={{display:'flex', flexDirection:'row'}}>
+      <FormControl sx={{ m: 1, minWidth: 120 }}>
+        <InputLabel id="demo-simple-select-readonly-label">Filter</InputLabel>
+        <Select
+          labelId="demo-simple-select-readonly-label"
+          id="demo-simple-select-readonly-label"
+          value={filter}
+          label={filter}
+          onChange={handleChange}
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={'all'}>All</MenuItem>
+          <MenuItem value={'batterMix'}>Batter Mix</MenuItem>
+          <MenuItem value={'veganMix'}>Vegan Mixes</MenuItem>
+          <MenuItem value={'snacks'}>Snacks</MenuItem>
+          <MenuItem value={'drinks'}>Drinks</MenuItem>
+
+        </Select>
+      </FormControl>
+      </Box>
       {showCA === true ? <div containerStyle={{width:'100%'}}>
-      <Carousel hideArrow cols={3} rows={2} gap={10} loop containerStyle={{ width:"35%",marginLeft:'auto',marginRight:'auto' }} showDots>
-      {productList.map((product) => ( 
-        <Carousel.Item>
-            <Card
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                width: "20em",
-                height: "21em",
-            }}
-            >
-                <CardContent>
-                    <CardMedia component="picture" height="20" sx={{paddingTop:'1em'}}>
-                    <Box sx={{borderStyle:'solid',borderColor:'#e5ebf5', backgroundColor:'white',height:'11em',width:'11em', marginLeft:'auto', marginRight:'auto'}}>
-                          <img
-                          src={product.src}
-                          alt="logo"
-                          height={"150em"}
-                          width={"130em"}
-                      />
-                    </Box>
-                    </CardMedia>
-                    <Typography variant="body2" color="text.secondary" sx={{paddingTop:'1em'}}>
-                        <h1>{product.name}</h1>
-                        <p>description here</p>
-                    </Typography>
-                    <button onClick={() => {handleClick(product.id)}}>Info</button>
-                </CardContent>
-            </Card>
-        </Carousel.Item>
-        ))}
+      <div>
+      <Carousel hideArrow cols={3} rows={2} gap={10} loop containerStyle={{ width:'1000px',marginLeft:'auto',marginRight:'auto' }} showDots>
+      {productList.map((product) => {
+        if (product.type === filter || filter === 'all')
+        return(
+          <Carousel.Item containerStyle={{width:'10px'}}>
+              <Card
+              sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  width: "20em",
+                  height: "21em",
+              }}
+              >
+                  <CardContent>
+                      <CardMedia component="picture" height="20" sx={{paddingTop:'1em'}}>
+                      <Box sx={{borderStyle:'solid',borderColor:'#e5ebf5', backgroundColor:'white',height:'11em',width:'11em', marginLeft:'auto', marginRight:'auto'}}>
+                            <img
+                            src={product.src}
+                            alt="logo"
+                            height={"150em"}
+                            width={"130em"}
+                        />
+                      </Box>
+                      </CardMedia>
+                      <button onClick={() => {handleClick(product.id)}}>Info</button>
+                  </CardContent>
+              </Card>
+          </Carousel.Item>)
+        })}
     </Carousel>
+    </div>
     </div>:<div></div>}
     </Container>
     
