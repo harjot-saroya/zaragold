@@ -19,11 +19,10 @@ const divStyle = {
 const slideImages = [productJson.chai,productJson.chickenLollipop,productJson.beetRoot];
 
 export default function Features() {
-console.log(slideImages)
   return (
     <Container id="slideShow" sx={{ pt: { xs: 8, sm: 16 } }}>
       <div className="slide-container">
-        <Slide slidesToShow={2}>
+        <Slide prevArrow={''} nextArrow={''} slidesToShow={2} arrows={false}>
          {slideImages.map((slideImage, index)=> (
             <div key={index} style={{display:'flex',flexDirection:'row'}}>
               <img src={`${slideImage.src}`} style={{...divStyle}}/>

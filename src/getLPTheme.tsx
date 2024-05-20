@@ -211,7 +211,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
           root: ({ theme }) => ({
             padding: 8,
             overflow: 'clip',
-            backgroundColor: '#fff',
+            backgroundColor: '#e7c68a',
             border: '1px solid',
             borderColor: gray[100],
             ':before': {

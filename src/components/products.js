@@ -57,10 +57,11 @@ export default function Products() {
                 borderStyle:'solid',
                 width: "25em",
                 height: "21em",
+                backgroundColor:'#faf2e7'
               }}
             >
               <CardContent>
-              <CardMedia component="picture" sx={{ padding: "1em 1em 0 1em", objectFit: "contain" }}>
+              <CardMedia component="picture" sx={{ padding: "1em 1em 0 1em" }}>
                   <Box sx={{borderStyle:'solid',borderColor:'#e5ebf5', backgroundColor:'white',height:'11em',width:'11em', marginLeft:'auto', marginRight:'auto'}}>
                     <img
                       src={product.src}

@@ -22,7 +22,7 @@ import Divider from '@mui/material/Divider';
 
 const productList = [productJson.batterMixClassic,productJson.batterMixHerb,productJson.batterMixHot,productJson.batterMixThai, productJson.beetRoot,
 productJson.chai,productJson.chai,productJson.chai,productJson.chickenLollipop,productJson.crunchyMasala,productJson.hotChocolate,productJson.regularSalted,
-productJson.sourCream, productJson.tangoTomato,productJson.turmericLatte]
+productJson.sourCream, productJson.tangoTomato,productJson.turmericLatte, productJson.laalMansMasala]
 
 export default function ProductPage() {
   const [mode, setMode] = React.useState('light');
@@ -48,7 +48,7 @@ export default function ProductPage() {
   };
   console.log('filter ', filter)
   return (
-    <ThemeProvider theme={LPtheme}>
+    <ThemeProvider theme={LPtheme} >
       <CssBaseline />
 
       <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
@@ -69,6 +69,7 @@ export default function ProductPage() {
         marginTop:'7em',
         marginBottom:'10em',
         overflowX:'hidden',
+        backgroundColor:'#e7c68a'
       }}
     >
       <Box
