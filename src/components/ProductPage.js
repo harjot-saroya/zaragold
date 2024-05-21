@@ -20,9 +20,18 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Divider from '@mui/material/Divider';
 
-const productList = [productJson.batterMixClassic,productJson.batterMixHerb,productJson.batterMixHot,productJson.batterMixThai, productJson.beetRoot,
-productJson.chai,productJson.chai,productJson.chai,productJson.chickenLollipop,productJson.crunchyMasala,productJson.hotChocolate,productJson.regularSalted,
-productJson.sourCream, productJson.tangoTomato,productJson.turmericLatte, productJson.laalMansMasala]
+const productList = [productJson.batterMixClassic,productJson.batterMixHerb,productJson.batterMixHotSpicy,productJson.batterMixThaiGreen, productJson.beetrootLatte,
+productJson.cacaoHerbalLatte,productJson.chickenLollypopMix,productJson.crunchyMasala,productJson.turmericMintHotChocolate,productJson.regularSalted,
+productJson.sourCream, productJson.tangoTomato,productJson.turmericLatte, productJson.laalMansMasala, productJson.lucknowiKormaMasala, productJson.lucknowiKebabMasala, 
+productJson.dhabiStyleKeemaMasala, productJson.hyderabadiHaleemMasala, productJson.bhuniKalejiMasala, productJson.goaFishCurryMasala, productJson.butterChickenMasala, 
+productJson.afghaniChickenAngaraMasala, productJson.coconutVaruthaChickenCurryMasala, productJson.achariGoshtMasala, productJson.hyderabadiChickenBiryaniMasala, 
+productJson.tandooriMasala, productJson.keralaStylePrawnsCurryMasala, productJson.kashmiriPayaMasala, productJson.shahiNihariMasala, productJson.mumbaiPavBhajiMasala,
+productJson.mughlaiPaneerMasala, productJson.kashmiriDumAlooMasala, productJson.tadkaMasala, productJson.allSpicesMasala, productJson.periPeriChickenMasala, 
+productJson.whiteChickenTikka, productJson.goldenChickenTikka, productJson.veganOmelette, productJson.veganBombayToastMix, productJson.veganOatsOmelette, 
+productJson.veganFrenchToastMix, productJson.veganEgglessOmelette, productJson.upmaMasala, productJson.veganEggBhurji, productJson.veganSpanishPotatoOmelette,
+productJson.veganScrambledEgg, productJson.veganMasalaOmelette, productJson.veganGreenOmelette, productJson.pohaMasala, productJson.corianderPowder, productJson.cuminPowder,
+productJson.garamMasalaPowder, productJson.redChilliPowder, productJson.turmericPowder, productJson.aftermealJaggeryGingerBites, productJson.veganEnergyBar,
+productJson.aftermealPaanBites]
 
 export default function ProductPage() {
   const [mode, setMode] = React.useState('light');
@@ -135,7 +144,7 @@ export default function ProductPage() {
                         />
                       </Box>
                       </CardMedia>
-                      <button onClick={() => {handleClick(product.id)}}>Info</button>
+                      <button onClick={() => {handleClick(product.id)}}>View More</button>
                   </CardContent>
               </Card>
           </Carousel.Item>)
