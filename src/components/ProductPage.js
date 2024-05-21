@@ -15,23 +15,14 @@ import getLPTheme from '../getLPTheme';
 import AppAppBar from './AppAppBar';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Divider from '@mui/material/Divider';
+import Table from '@mui/material/Table';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
 
-const productList = [productJson.batterMixClassic,productJson.batterMixHerb,productJson.batterMixHotSpicy,productJson.batterMixThaiGreen, productJson.beetrootLatte,
-productJson.cacaoHerbalLatte,productJson.chickenLollypopMix,productJson.crunchyMasala,productJson.turmericMintHotChocolate,productJson.regularSalted,
-productJson.sourCream, productJson.tangoTomato,productJson.turmericLatte, productJson.laalMansMasala, productJson.lucknowiKormaMasala, productJson.lucknowiKebabMasala, 
-productJson.dhabiStyleKeemaMasala, productJson.hyderabadiHaleemMasala, productJson.bhuniKalejiMasala, productJson.goaFishCurryMasala, productJson.butterChickenMasala, 
-productJson.afghaniChickenAngaraMasala, productJson.coconutVaruthaChickenCurryMasala, productJson.achariGoshtMasala, productJson.hyderabadiChickenBiryaniMasala, 
-productJson.tandooriMasala, productJson.keralaStylePrawnsCurryMasala, productJson.kashmiriPayaMasala, productJson.shahiNihariMasala, productJson.mumbaiPavBhajiMasala,
-productJson.mughlaiPaneerMasala, productJson.kashmiriDumAlooMasala, productJson.tadkaMasala, productJson.allSpicesMasala, productJson.periPeriChickenMasala, 
-productJson.whiteChickenTikka, productJson.goldenChickenTikka, productJson.veganOmelette, productJson.veganBombayToastMix, productJson.veganOatsOmelette, 
-productJson.veganFrenchToastMix, productJson.veganEgglessOmelette, productJson.upmaMasala, productJson.veganEggBhurji, productJson.veganSpanishPotatoOmelette,
-productJson.veganScrambledEgg, productJson.veganMasalaOmelette, productJson.veganGreenOmelette, productJson.pohaMasala, productJson.corianderPowder, productJson.cuminPowder,
-productJson.garamMasalaPowder, productJson.redChilliPowder, productJson.turmericPowder, productJson.aftermealJaggeryGingerBites, productJson.veganEnergyBar,
-productJson.aftermealPaanBites]
+const productList = Object.keys(productJson);
 
 export default function ProductPage() {
   const [mode, setMode] = React.useState('light');
@@ -76,7 +67,6 @@ export default function ProductPage() {
         height:"100%",
         backgroundColor:'#fbfeff',
         marginTop:'7em',
-        marginBottom:'10em',
         overflowX:'hidden',
         backgroundColor:'#e7c68a'
       }}
@@ -104,6 +94,7 @@ export default function ProductPage() {
           value={filter}
           label={filter}
           onChange={handleChange}
+          sx={{bgcolor:'white'}}
         >
           <MenuItem value="">
             <em>None</em>
@@ -121,7 +112,7 @@ export default function ProductPage() {
       <div>
       <Carousel hideArrow cols={3} rows={2} gap={10} loop containerStyle={{ width:'1000px',marginLeft:'auto',marginRight:'auto' }} showDots>
       {productList.map((product) => {
-        if (product.type === filter || filter === 'all')
+        if ((productJson[product].type === filter || filter === 'all') && (productJson[product].region === 'CA'))
         return(
           <Carousel.Item containerStyle={{width:'10px'}}>
               <Card
@@ -131,27 +122,78 @@ export default function ProductPage() {
                   justifyContent: 'space-between',
                   width: "20em",
                   height: "21em",
+                  backgroundColor:'#faf2e7',
               }}
               >
                   <CardContent>
                       <CardMedia component="picture" height="20" sx={{paddingTop:'1em'}}>
                       <Box sx={{borderStyle:'solid',borderColor:'#e5ebf5', backgroundColor:'white',height:'11em',width:'11em', marginLeft:'auto', marginRight:'auto'}}>
                             <img
-                            src={product.src}
+                            src={productJson[product].src}
                             alt="logo"
                             height={"150em"}
                             width={"130em"}
                         />
                       </Box>
+                      <Table>
+                        <TableRow>
+                          <TableCell sx={{margin:'auto', textAlign:'center', padding:'0'}}>
+                          <Typography component="h2" variant="h4" color="text.primary" fontSize={'16px'} overflow={'auto'}>
+                        {productJson[product].name}
+                        </Typography>
+                          </TableCell>
+                        </TableRow>
+                      <TableRow>
+                        <TableCell sx={{margin:'auto', textAlign:'center'}}>
+                        <Button variant="outlined" sx={{ backgroundColor:'#522f29', color:'white'}} onClick={() => {handleClick(product.id)}}>View More</Button>
+                        </TableCell>
+                      </TableRow>
+                        
+                      </Table>
                       </CardMedia>
-                      <button onClick={() => {handleClick(product.id)}}>View More</button>
                   </CardContent>
               </Card>
           </Carousel.Item>)
         })}
     </Carousel>
     </div>
-    </div>:<div></div>}
+    </div>:<div>
+    <Carousel hideArrow cols={3} rows={2} gap={10} loop containerStyle={{ width:'1000px',marginLeft:'auto',marginRight:'auto' }} showDots>
+      {productList.map((product) => {
+        if ((productJson[product].type === filter || filter === 'all') && (productJson[product].region === 'IN'))
+        return(
+          <Carousel.Item containerStyle={{width:'10px'}}>
+              <Card
+              sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  width: "20em",
+                  height: "21em",
+                  backgroundColor:'#faf2e7',
+              }}
+              >
+                  <CardContent>
+                      <CardMedia component="picture" height="20" sx={{paddingTop:'1em'}}>
+                      <Box sx={{borderStyle:'solid',borderColor:'#e5ebf5', backgroundColor:'white',height:'11em',width:'11em', marginLeft:'auto', marginRight:'auto'}}>
+                            <img
+                            src={productJson[product].src}
+                            alt="logo"
+                            height={"150em"}
+                            width={"130em"}
+                        />
+                      </Box>
+                      <Typography component="h2" variant="h5" color="text.primary" fontSize={'20px'}>
+                        {productJson[product].name}
+                      </Typography>
+                      <Button variant="outlined" sx={{backgroundColor:'#522f29', color:'white', marginTop:'2em'}} onClick={() => {handleClick(product.id)}}>View More</Button>
+                      </CardMedia>
+                  </CardContent>
+              </Card>
+          </Carousel.Item>)
+        })}
+    </Carousel>
+      </div>}
     </Container>
     
     </ThemeProvider>

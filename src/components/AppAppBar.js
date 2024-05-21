@@ -13,7 +13,7 @@ import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import ToggleColorMode from './ToggleColorMode';
 import { useNavigate} from "react-router-dom";
-
+import logo from '../photos/Logo.png';
 const logoStyle = {
   width: '140px',
   height: 'auto',
@@ -91,9 +91,7 @@ function AppAppBar({ mode, toggleColorMode }) {
               }}
             >
               <img
-                src={
-                  ''
-                }
+                src={logo}
                 style={logoStyle}
                 alt="PUT LOGO HERE"
               />

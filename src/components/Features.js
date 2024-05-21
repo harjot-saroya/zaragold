@@ -2,7 +2,7 @@ import * as React from 'react';
 import Container from '@mui/material/Container';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
-import { productJson } from '../photos/photos';
+import { slideShowImages } from '../photos/slideshow';
 
 const divStyle = {
   display: 'flex',
@@ -16,13 +16,13 @@ const divStyle = {
   backgroundRepeat:'no-repeat'
 }
 
-const slideImages = [productJson.chai,productJson.chickenLollipop,productJson.beetRoot];
+const slideImages = [slideShowImages.main,slideShowImages.slide1,slideShowImages.slide2,slideShowImages.slide3,slideShowImages.slide4,slideShowImages.slide5];
 
 export default function Features() {
   return (
     <Container id="slideShow" sx={{ pt: { xs: 8, sm: 16 } }}>
       <div className="slide-container">
-        <Slide prevArrow={''} nextArrow={''} slidesToShow={2} arrows={false}>
+        <Slide slidesToShow={1} arrows={false}>
          {slideImages.map((slideImage, index)=> (
             <div key={index} style={{display:'flex',flexDirection:'row'}}>
               <img src={`${slideImage.src}`} style={{...divStyle}}/>

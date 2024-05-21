@@ -11,10 +11,9 @@ import Grid from '@mui/material/Grid';
 import { useTheme } from '@mui/system';
 import { productJson } from '../photos/photos';
 
-const productList = [productJson.batterMixClassic,productJson.batterMixHerb,productJson.batterMixHot,productJson.batterMixThai,
-  productJson.beetRoot,productJson.crunchyMasala]
+const productList = [productJson.batterMixClassic,productJson.batterMixHerb,productJson.batterMixHotSpicy,productJson.batterMixThaiGreen,
+  productJson.beetrootLatte,productJson.crunchyMasala]
 
-const productList2 = [productJson.batterMixThai,productJson.beetRoot,productJson.crunchyMasala]
 
 export default function Products() {
   const theme = useTheme();

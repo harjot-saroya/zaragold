@@ -40,10 +40,11 @@ export default function FAQ() {
       >
         Frequently asked questions
       </Typography>
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: '100%'}}>
         <Accordion
           expanded={expanded === 'panel1'}
           onChange={handleChange('panel1')}
+          sx={{backgroundColor:'#faf2e7' }}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -70,6 +71,7 @@ export default function FAQ() {
         <Accordion
           expanded={expanded === 'panel2'}
           onChange={handleChange('panel2')}
+          sx={{backgroundColor:'#faf2e7' }}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -95,6 +97,7 @@ export default function FAQ() {
         <Accordion
           expanded={expanded === 'panel3'}
           onChange={handleChange('panel3')}
+          sx={{backgroundColor:'#faf2e7' }}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -120,6 +123,7 @@ export default function FAQ() {
         <Accordion
           expanded={expanded === 'panel4'}
           onChange={handleChange('panel4')}
+          sx={{backgroundColor:'#faf2e7' }}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}

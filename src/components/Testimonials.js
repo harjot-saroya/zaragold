@@ -119,6 +119,7 @@ export default function Testimonials() {
                 justifyContent: 'space-between',
                 flexGrow: 1,
                 p: 1,
+                backgroundColor:'#faf2e7'
               }}
             >
               <CardContent>
@@ -130,20 +131,13 @@ export default function Testimonials() {
                 sx={{
                   display: 'flex',
                   flexDirection: 'row',
-                  justifyContent: 'space-between',
+                  justifyContent: 'center',
                   pr: 2,
                 }}
               >
-                <CardHeader
-                  avatar={testimonial.avatar}
-                  title={testimonial.name}
-                  subheader={testimonial.occupation}
-                />
-                <img
-                  src={logos[index]}
-                  alt={`Logo ${index + 1}`}
-                  style={logoStyle}
-                />
+                <Typography>
+                  {testimonial.name}
+                </Typography>
               </Box>
             </Card>
           </Grid>
