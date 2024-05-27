@@ -30,6 +30,18 @@ export default function ProductPage() {
   const LPtheme = createTheme(getLPTheme(mode));
   const [filter, setFilter] = React.useState('all');
 
+  const MyDot = ({ isActive }) => (
+    <span
+      style={{
+        display: 'inline-block',
+        height: isActive ? '15px' : '7px',
+        width: isActive ? '15px' : '7px',
+        background: '#1890ff',
+        backgroundColor: isActive ? '#522f29':'white',
+      }}
+    ></span>
+  )
+  
   const handleChange = (event) => {
     setFilter(event.target.value);
   };
@@ -41,6 +53,7 @@ export default function ProductPage() {
   let navigate = useNavigate();
 
   const handleClick = (productId) => {
+    console.log('idddd',productId)
     navigate({
       pathname:'/selectedProduct/',
       search:productId
@@ -110,9 +123,9 @@ export default function ProductPage() {
       </Box>
       {showCA === true ? <div containerStyle={{width:'100%'}}>
       <div>
-      <Carousel hideArrow cols={3} rows={2} gap={10} loop containerStyle={{ width:'1000px',marginLeft:'auto',marginRight:'auto' }} showDots>
+      <Carousel dot={MyDot} hideArrow cols={3} rows={2} gap={10} loop containerStyle={{ width:'1000px',marginLeft:'auto',marginRight:'auto' }} showDots>
       {productList.map((product) => {
-        if ((productJson[product].type === filter || filter === 'all') && (productJson[product].region === 'CA'))
+        if ((productJson[product].type === filter || filter === 'all') && (productJson[product].region === 'CA' || productJson[product].region === 'CAIN'))
         return(
           <Carousel.Item containerStyle={{width:'10px'}}>
               <Card
@@ -145,7 +158,7 @@ export default function ProductPage() {
                         </TableRow>
                       <TableRow>
                         <TableCell sx={{margin:'auto', textAlign:'center'}}>
-                        <Button variant="outlined" sx={{ backgroundColor:'#522f29', color:'white'}} onClick={() => {handleClick(product.id)}}>View More</Button>
+                        <Button variant="outlined" sx={{ backgroundColor:'#522f29', color:'white'}} onClick={() => {handleClick(productJson[product].id)}}>View More</Button>
                         </TableCell>
                       </TableRow>
                         
@@ -158,9 +171,9 @@ export default function ProductPage() {
     </Carousel>
     </div>
     </div>:<div>
-    <Carousel hideArrow cols={3} rows={2} gap={10} loop containerStyle={{ width:'1000px',marginLeft:'auto',marginRight:'auto' }} showDots>
+    <Carousel dot={MyDot} hideArrow cols={3} rows={2} gap={10} loop containerStyle={{ width:'1000px',marginLeft:'auto',marginRight:'auto' }} showDots>
       {productList.map((product) => {
-        if ((productJson[product].type === filter || filter === 'all') && (productJson[product].region === 'IN'))
+        if ((productJson[product].type === filter || filter === 'all') && (productJson[product].region === 'IN' || productJson[product].region === 'CAIN'))
         return(
           <Carousel.Item containerStyle={{width:'10px'}}>
               <Card
@@ -186,7 +199,7 @@ export default function ProductPage() {
                       <Typography component="h2" variant="h5" color="text.primary" fontSize={'20px'}>
                         {productJson[product].name}
                       </Typography>
-                      <Button variant="outlined" sx={{backgroundColor:'#522f29', color:'white', marginTop:'2em'}} onClick={() => {handleClick(product.id)}}>View More</Button>
+                      <Button variant="outlined" sx={{backgroundColor:'#522f29', color:'white', marginTop:'2em'}} onClick={() => {handleClick(productJson[product].id)}}>View More</Button>
                       </CardMedia>
                   </CardContent>
               </Card>

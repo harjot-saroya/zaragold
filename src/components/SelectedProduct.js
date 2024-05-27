@@ -5,7 +5,6 @@ import { CardMedia } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { allProducts } from '../AllProducts';
 import { CssBaseline } from '@mui/material';
 import AppAppBar from './AppAppBar';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -17,13 +16,13 @@ import getLPTheme from '../getLPTheme';
 export default function SelectedProduct() {
     const [mode, setMode] = React.useState('light');
     const productName = window.location.search.slice(1)
-    let { id } = useParams();
+    console.log(productName)
 
     const LPtheme = createTheme(getLPTheme(mode));
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
-  };
+  };  
 
   return (
     <ThemeProvider theme={LPtheme}>
@@ -55,16 +54,14 @@ export default function SelectedProduct() {
             <CardContent>
             <CardMedia component="picture" height="140">
                 <img
-                    src={productJson[productName].src}
+                    src={productJson[productName].src2}
                     alt="logo"
-                    height={"250em"}
-                    width={"230em"}
+                    height={"550em"}
+                    width={"800em"}
                 />
             </CardMedia>
             <Typography variant="body2" color="text.secondary">
                 <h1>{productJson[productName].name}</h1>
-                <p>{allProducts.price}</p>
-                {allProducts.description}
             </Typography>
             </CardContent>
             <Box

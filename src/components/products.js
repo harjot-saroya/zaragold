@@ -1,23 +1,30 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import { CardMedia } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
+import { useNavigate} from "react-router-dom";
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import { useTheme } from '@mui/system';
 import { productJson } from '../photos/photos';
+import Table from '@mui/material/Table';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import Button from '@mui/material/Button';
 
-const productList = [productJson.batterMixClassic,productJson.batterMixHerb,productJson.batterMixHotSpicy,productJson.batterMixThaiGreen,
-  productJson.beetrootLatte,productJson.crunchyMasala]
 
+const productList = Object.keys(productJson).slice(0,6);
 
 export default function Products() {
-  const theme = useTheme();
+  let navigate = useNavigate();
 
+  const handleClick = (productId) => {
+    navigate({
+      pathname:'/selectedProduct/',
+      search:productId
+    });
+  };
   return (
     <div style={{'display':'flex','flex-direction':'row', 'maxWidth':'100%', 'marginLeft':'auto','marginRight':'auto'}}>
     <Container
@@ -63,19 +70,28 @@ export default function Products() {
               <CardMedia component="picture" sx={{ padding: "1em 1em 0 1em" }}>
                   <Box sx={{borderStyle:'solid',borderColor:'#e5ebf5', backgroundColor:'white',height:'11em',width:'11em', marginLeft:'auto', marginRight:'auto'}}>
                     <img
-                      src={product.src}
+                      src={productJson[product].src}
                       alt="logo"
                       height={"100%"}
                       width={"100%"}
                   />
                   </Box>
                 </CardMedia>
-                <Typography variant="body2" color="text.secondary">
-                <Typography component="h2" variant="h4" color="text.primary" fontSize={'25px'}>
-                  {product.name}
-                </Typography>
-                  Description
-                </Typography>
+                <Table>
+                        <TableRow>
+                          <TableCell sx={{margin:'auto', textAlign:'center', padding:'0'}}>
+                          <Typography component="h2" variant="h4" color="text.primary" fontSize={'16px'} overflow={'auto'}>
+                        {productJson[product].name}
+                        </Typography>
+                          </TableCell>
+                        </TableRow>
+                      <TableRow>
+                        <TableCell sx={{margin:'auto', textAlign:'center'}}>
+                        <Button variant="outlined" sx={{ backgroundColor:'#522f29', color:'white'}} onClick={() => {handleClick(productJson[product].id)}}>View More</Button>
+                        </TableCell>
+                      </TableRow>
+                        
+                      </Table>
               </CardContent>
               <Box
                 sx={{
