@@ -14,6 +14,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ToggleColorMode from './ToggleColorMode';
 import { useNavigate} from "react-router-dom";
 import logo from '../photos/Logo.png';
+
+
 const logoStyle = {
   width: '140px',
   height: 'auto',
@@ -22,6 +24,7 @@ const logoStyle = {
 
 function AppAppBar({ mode, toggleColorMode }) {
   const [open, setOpen] = React.useState(false);
+
   let navigate = useNavigate();
   const url = window.location.href;
   const params = url.split("/"); 
@@ -45,6 +48,13 @@ function AppAppBar({ mode, toggleColorMode }) {
       setOpen(false);
     }
 
+  };
+
+  const handleClick = () => {
+    navigate({
+      pathname:'/',
+      state: { targetId: "footer" },
+    });
   };
 
   return (
@@ -121,15 +131,15 @@ function AppAppBar({ mode, toggleColorMode }) {
                   </Typography>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => scrollToSection('footer')}
-                  sx={{ py: '6px', px: '32px' }}
+                  onClick={() => scrollToSection('footer')} sx={{ py: '6px', px: '32px' }}
                 >
                   <Typography variant="body2" color="text.new" fontSize={'16px'}>
                     About us
                   </Typography>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => scrollToSection('faq')}
+                  onClick={() => { handleClick();
+                    scrollToSection('faq')}}
                   sx={{ py: '6px', px: '32px' }}
                 >
                   <Typography variant="body2" color="text.new" fontSize={'16px'}>

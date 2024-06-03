@@ -94,8 +94,8 @@ export default function ProductPage() {
           Products
         </Typography>
         <ButtonGroup>
-          <Button variant='text' sx={{color:(showCA) ? 'white': 'black', backgroundColor:(showCA) ? '#522f29': 'lightgreen'}} onClick={() => {setCountry(true)}}>Show Canadian Products</Button>
-          <Button variant='text' sx={{color:(!showCA) ? 'white': 'black', backgroundColor:(!showCA) ? '#522f29': 'lightgreen'}} onClick={() => {setCountry(false)}}>Show Indian Products</Button>
+          <Button variant='text' sx={{color:(showCA) ? 'white': 'black', backgroundColor:(showCA) ? '#522f29': 'white'}} onClick={() => {setCountry(true)}}>Show Canadian Products</Button>
+          <Button variant='text' sx={{color:(!showCA) ? 'white': 'black', backgroundColor:(!showCA) ? '#522f29': 'white'}} onClick={() => {setCountry(false)}}>Show Indian Products</Button>
         </ButtonGroup>
       </Box>
       <Box sx={{display:'flex', flexDirection:'row'}}>
@@ -123,7 +123,7 @@ export default function ProductPage() {
       </Box>
       {showCA === true ? <div containerStyle={{width:'100%'}}>
       <div>
-      <Carousel dot={MyDot} hideArrow cols={3} rows={2} gap={10} loop containerStyle={{ width:'1000px',marginLeft:'auto',marginRight:'auto' }} showDots>
+      <Carousel dot={MyDot} cols={3} rows={2} gap={10} loop containerStyle={{ width:'1000px',marginLeft:'auto',marginRight:'auto' }} showDots>
       {productList.map((product) => {
         if ((productJson[product].type === filter || filter === 'all') && (productJson[product].region === 'CA' || productJson[product].region === 'CAIN'))
         return(

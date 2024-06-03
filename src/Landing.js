@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-
+import { useEffect } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -10,13 +10,12 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import AppAppBar from './components/AppAppBar';
 import Products from './components/products'
-import Highlights from './components/Highlights';
-import Pricing from './components/Pricing';
 import Features from './components/Features';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import getLPTheme from './getLPTheme.js';
+import { useLocation } from 'react-router';
 
 function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }) {
   return (
@@ -64,7 +63,16 @@ export default function LandingPage() {
   const [mode, setMode] = React.useState('light');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const LPtheme = createTheme(getLPTheme(mode));
-  const defaultTheme = createTheme({ palette: { mode } });
+  const { state } = useLocation();
+  const { targetId } = state || {};
+  console.log('Targetid: ',useLocation())
+  
+  useEffect(() => {
+    const el = document.getElementById(targetId);
+    if (el) {
+      el.scrollIntoView();
+    }
+  }, [targetId]);
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));

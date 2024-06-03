@@ -22,7 +22,7 @@ export default function Features() {
   return (
     <Container id="slideShow" sx={{ pt: { xs: 8, sm: 16 } }}>
       <div className="slide-container">
-        <Slide slidesToShow={1} arrows={false}>
+        <Slide slidesToShow={1} arrows={true}>
          {slideImages.map((slideImage, index)=> (
             <div key={index} style={{display:'flex',flexDirection:'row'}}>
               <img src={`${slideImage.src}`} style={{...divStyle}}/>
