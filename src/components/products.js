@@ -26,7 +26,7 @@ export default function Products() {
     });
   };
   return (
-    <div style={{'display':'flex','flex-direction':'row', 'maxWidth':'100%', 'marginLeft':'auto','marginRight':'auto'}}>
+    <Box sx={{display:'flex',flexDirection:'row', maxWidth:'100%', marginLeft:'auto', marginRight:'auto'}}>
     <Container
       id="testimonials"
       sx={{
@@ -50,9 +50,11 @@ export default function Products() {
           Featured Products
         </Typography>
       </Box>
-      <Grid container spacing={4} width={"1000px"} sx={{marginLeft:'auto', marginRight:'auto'}}>
+      <Grid container spacing={4} width={"100%"} sx={{marginLeft:'auto', marginRight:'auto'}}>
         {productList.map((product, index) => (
-          <Grid item xs={2} md={4} key={index} sx={{ display: 'flex', width:'80%', display:'flex', justifyContent:'center'}}>
+          <Grid item xs={8} md={4} key={index} sx={{ display: 'flex', width:'100%', justifyContent:'center', '@media (min-width: 390px)': {
+            marginLeft:'auto', marginRight:'auto'
+          }}}>
             <Card
               sx={{
                 display: 'flex',
@@ -66,7 +68,9 @@ export default function Products() {
               }}
             >
               <CardContent>
-              <CardMedia component="picture" sx={{ padding: "1em 1em 0 1em" }}>
+              <CardMedia component="picture" sx={{ padding: "1em 1em 0 1em", '@media (min-width: 390px)': {
+            pl: '0px'
+          } }}>
                   <Box sx={{borderStyle:'solid',borderColor:'#e5ebf5', backgroundColor:'white',height:'11em',width:'11em', marginLeft:'auto', marginRight:'auto'}}>
                     <img
                       src={productJson[product].src}
@@ -105,6 +109,6 @@ export default function Products() {
         ))}
       </Grid>
     </Container>
-    </div>
+    </Box>
   );
 }

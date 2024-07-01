@@ -20,7 +20,7 @@ const slideImages = [slideShowImages.main,slideShowImages.slide1,slideShowImages
 
 export default function Features() {
   return (
-    <Container id="slideShow" sx={{ pt: { xs: 8, sm: 16 } }}>
+    <Container id="slideShow" sx={{ pt: { xs: 8, sm: 16 }, width: {xs:'100%'} }}>
       <div className="slide-container">
         <Slide slidesToShow={1} arrows={true}>
          {slideImages.map((slideImage, index)=> (

@@ -29,6 +29,22 @@ export default function ProductPage() {
   const [showCA, setCountry] = React.useState(true);
   const LPtheme = createTheme(getLPTheme(mode));
   const [filter, setFilter] = React.useState('all');
+  const [currWidth, setWidth] = React.useState(window.innerWidth);
+
+  React.useEffect(() => {
+    const handleResizeWindow = () => setWidth(window.innerWidth);
+     // subscribe to window resize event "onComponentDidMount"
+     window.addEventListener("resize", handleResizeWindow);
+     return () => {
+       // unsubscribe "onComponentDestroy"
+       window.removeEventListener("resize", handleResizeWindow);
+     };
+   }, []);
+   let width = '65vw'
+
+  if (currWidth < 1000){
+    width = '100vw'
+  }
 
   const MyDot = ({ isActive }) => (
     <span
@@ -77,16 +93,16 @@ export default function ProductPage() {
         minWidth:"100%",
         marginLeft:'auto',
         marginRight:'auto',
-        height:"100%",
+        height:"100vw",
         backgroundColor:'#fbfeff',
         marginTop:'7em',
         overflowX:'hidden',
-        backgroundColor:'#e7c68a'
+        backgroundColor:'#e7c68a',
+        paddingBottom:'50em'
       }}
     >
       <Box
         sx={{
-          width: { sm: '100%', md: '60%' },
           textAlign: { sm: 'left', md: 'center' },
         }}
       >
@@ -122,8 +138,27 @@ export default function ProductPage() {
       </FormControl>
       </Box>
       {showCA === true ? <div containerStyle={{width:'100%'}}>
+      
       <div>
-      <Carousel dot={MyDot} cols={3} rows={2} gap={10} loop containerStyle={{ width:'1000px',marginLeft:'auto',marginRight:'auto' }} showDots>
+      <Carousel dot={MyDot} 
+      cols={3} 
+      rows={2} 
+      gap={10} 
+      loop 
+      containerStyle={{width:`${width}`,height:'100%',marginLeft:'auto',marginRight:'auto'}}
+      responsiveLayout={[
+        {
+          breakpoint: 1200,
+          cols: 2,
+          rows: 1
+        },
+        {
+          breakpoint: 990,
+          cols: 1,
+        rows: 1        }
+      ]}
+      mobileBreakpoint={300}
+      showDots>
       {productList.map((product) => {
         if ((productJson[product].type === filter || filter === 'all') && (productJson[product].region === 'CA' || productJson[product].region === 'CAIN'))
         return(
@@ -171,7 +206,24 @@ export default function ProductPage() {
     </Carousel>
     </div>
     </div>:<div>
-    <Carousel dot={MyDot} hideArrow cols={3} rows={2} gap={10} loop containerStyle={{ width:'1000px',marginLeft:'auto',marginRight:'auto' }} showDots>
+    <Carousel dot={MyDot} 
+      cols={3} 
+      rows={2} 
+      gap={10} 
+      loop 
+      containerStyle={{width:`${width}`,height:'100vh',marginLeft:'auto',marginRight:'auto'}}
+      responsiveLayout={[
+        {
+          breakpoint: 1200,
+          cols: 2,
+          rows: 1
+        },
+        {
+          breakpoint: 990,
+          cols: 1,
+        rows: 1        }
+      ]}
+      mobileBreakpoint={500} showDots>
       {productList.map((product) => {
         if ((productJson[product].type === filter || filter === 'all') && (productJson[product].region === 'IN' || productJson[product].region === 'CAIN'))
         return(
@@ -196,10 +248,20 @@ export default function ProductPage() {
                             width={"130em"}
                         />
                       </Box>
-                      <Typography component="h2" variant="h5" color="text.primary" fontSize={'20px'}>
+                      <Table>
+                        <TableRow>
+                          <TableCell sx={{margin:'auto', textAlign:'center', padding:'0'}}>
+                          <Typography component="h2" variant="h4" color="text.primary" fontSize={'16px'} overflow={'auto'}>
                         {productJson[product].name}
-                      </Typography>
-                      <Button variant="outlined" sx={{backgroundColor:'#522f29', color:'white', marginTop:'2em'}} onClick={() => {handleClick(productJson[product].id)}}>View More</Button>
+                        </Typography>
+                          </TableCell>
+                        </TableRow>
+                      <TableRow>
+                        <TableCell sx={{margin:'auto', textAlign:'center'}}>
+                        <Button variant="outlined" sx={{ backgroundColor:'#522f29', color:'white'}} onClick={() => {handleClick(productJson[product].id)}}>View More</Button>
+                        </TableCell>
+                      </TableRow>
+                      </Table>
                       </CardMedia>
                   </CardContent>
               </Card>

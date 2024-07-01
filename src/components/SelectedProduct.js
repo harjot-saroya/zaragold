@@ -15,10 +15,23 @@ import getLPTheme from '../getLPTheme';
 
 export default function SelectedProduct() {
     const [mode, setMode] = React.useState('light');
-    const productName = window.location.search.slice(1)
-    console.log(productName)
-
+    const productName = window.location.search.slice(1);
     const LPtheme = createTheme(getLPTheme(mode));
+    const [currWidth, setWidth] = React.useState(window.innerWidth);
+
+    React.useEffect(() => {
+      const handleResizeWindow = () => setWidth(window.innerWidth);
+       // subscribe to window resize event "onComponentDidMount"
+       window.addEventListener("resize", handleResizeWindow);
+       return () => {
+         // unsubscribe "onComponentDestroy"
+         window.removeEventListener("resize", handleResizeWindow);
+       };
+     }, []);
+     let params = {width:'55vw'};
+    if (currWidth < 1000){
+      params = {objectFit:'contain',width:'20em',height:'30em'}
+    }
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
@@ -52,12 +65,13 @@ export default function SelectedProduct() {
             }}
         >
             <CardContent>
-            <CardMedia component="picture" height="140">
+            <CardMedia component="picture" height="140" width="100vw">
                 <img
                     src={productJson[productName].src2}
                     alt="logo"
                     height={"550em"}
-                    width={"800em"}
+                    width={'100vw'}
+                    style={params}
                 />
             </CardMedia>
             <Typography variant="body2" color="text.secondary">
