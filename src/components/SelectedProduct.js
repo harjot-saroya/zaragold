@@ -8,7 +8,6 @@ import Container from '@mui/material/Container';
 import { CssBaseline } from '@mui/material';
 import AppAppBar from './AppAppBar';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { useParams } from 'react-router-dom';
 import { productJson } from '../photos/photos';
 
 import getLPTheme from '../getLPTheme';
@@ -28,7 +27,7 @@ export default function SelectedProduct() {
          window.removeEventListener("resize", handleResizeWindow);
        };
      }, []);
-     let params = {width:'55vw'};
+    let params = {width:'55vw'};
     if (currWidth < 1000){
       params = {objectFit:'contain',width:'20em',height:'30em'}
     }
